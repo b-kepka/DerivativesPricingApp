@@ -42,5 +42,4 @@ See **[RUN.md](RUN.md)** for:
 - **API database:** Connection string in User Secrets for the Api project (`ConnectionStrings:DatabaseConnection`). Default seed creates sample counterparties, trades, collateral, and margin calls on first run.
 
 ## License
-
-MIT (or specify your license).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
