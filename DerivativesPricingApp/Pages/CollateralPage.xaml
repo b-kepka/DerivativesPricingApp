@@ -13,18 +13,18 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
 
-        <Border Grid.Row="1" x:Name="CollateralFormBorder" IsVisible="False" Padding="12" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}" Margin="0,8,0,8">
+        <Border Grid.Row="1" x:Name="CollateralFormBorder" IsVisible="False" Padding="12" Stroke="{StaticResource Gray600}" BackgroundColor="{StaticResource Gray950}" StrokeShape="RoundRectangle 10" Margin="0,8,0,8">
             <VerticalStackLayout Spacing="8">
-                <Label Text="Trade ID (optional)" />
-                <Entry x:Name="FormTradeId" Keyboard="Numeric" Placeholder="e.g. 1" />
-                <Label Text="Asset ID" />
-                <Entry x:Name="FormAssetId" Placeholder="e.g. CASH-EUR" />
-                <Label Text="Quantity" />
-                <Entry x:Name="FormQuantity" Keyboard="Numeric" Placeholder="e.g. 1000" />
-                <Label Text="Value" />
-                <Entry x:Name="FormValue" Keyboard="Numeric" Placeholder="e.g. 1000" />
-                <Label Text="Posted date (optional, YYYY-MM-DD)" />
-                <Entry x:Name="FormPostedDate" Placeholder="e.g. 2024-01-15" />
+                <Label Text="Trade ID (optional)" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormTradeId" Keyboard="Numeric" Placeholder="e.g. 1" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
+                <Label Text="Asset ID" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormAssetId" Placeholder="e.g. CASH-EUR" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
+                <Label Text="Quantity" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormQuantity" Keyboard="Numeric" Placeholder="e.g. 1000" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
+                <Label Text="Value" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormValue" Keyboard="Numeric" Placeholder="e.g. 1000" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
+                <Label Text="Posted date (optional, YYYY-MM-DD)" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormPostedDate" Placeholder="e.g. 2024-01-15" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
                 <HorizontalStackLayout Spacing="10">
                     <Button x:Name="FormSaveButton" Text="Save" Clicked="OnFormSaveClicked" />
                     <Button x:Name="FormCancelButton" Text="Cancel" Clicked="OnFormCancelClicked" />
@@ -32,20 +32,22 @@
             </VerticalStackLayout>
         </Border>
 
-        <CollectionView Grid.Row="2" x:Name="CollateralList" SelectionMode="Single" SelectionChanged="OnCollateralSelectionChanged">
+        <CollectionView Grid.Row="2" x:Name="CollateralList" SelectionMode="Single" SelectionChanged="OnCollateralSelectionChanged" Margin="0,10,0,0">
             <CollectionView.EmptyView>
                 <Label Text="No collateral positions. Tap Add to create one." TextColor="{StaticResource Gray500}" HorizontalOptions="Center" VerticalOptions="Center" />
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border Padding="12" Margin="0,4" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}">
-                        <VerticalStackLayout Spacing="4">
-                            <Label Text="{Binding AssetId}" FontAttributes="Bold" />
-                            <Label Text="{Binding Value, StringFormat='Value: {0:N2}'}" />
-                            <Label Text="{Binding PostedDate, StringFormat='Posted: {0:yyyy-MM-dd}'}" />
-                            <Label Text="{Binding TradeId, StringFormat='Trade ID: {0}'}" />
-                        </VerticalStackLayout>
-                    </Border>
+                    <VerticalStackLayout Padding="0,8,0,8" Spacing="0">
+                        <Border Padding="10" Stroke="{StaticResource Gray600}" BackgroundColor="{StaticResource Gray950}" StrokeShape="RoundRectangle 10">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="{Binding AssetId}" FontAttributes="Bold" TextColor="{StaticResource White}" />
+                                <Label Text="{Binding Value, StringFormat='Value: {0:N2}'}" TextColor="{StaticResource White}" />
+                                <Label Text="{Binding PostedDate, StringFormat='Posted: {0:yyyy-MM-dd}'}" TextColor="{StaticResource White}" />
+                                <Label Text="{Binding TradeId, StringFormat='Trade ID: {0}'}" TextColor="{StaticResource Gray400}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

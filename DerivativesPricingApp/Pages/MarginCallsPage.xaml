@@ -13,16 +13,16 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
 
-        <Border Grid.Row="1" x:Name="MarginCallFormBorder" IsVisible="False" Padding="12" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}" Margin="0,8,0,8">
+        <Border Grid.Row="1" x:Name="MarginCallFormBorder" IsVisible="False" Padding="12" Stroke="{StaticResource Gray600}" BackgroundColor="{StaticResource Gray950}" StrokeShape="RoundRectangle 10" Margin="0,8,0,8">
             <VerticalStackLayout Spacing="8">
-                <Label Text="Counterparty" />
-                <Picker x:Name="FormCounterpartyPicker" Title="Select counterparty" />
-                <Label Text="Amount" />
-                <Entry x:Name="FormAmount" Keyboard="Numeric" Placeholder="e.g. 25000" />
-                <Label Text="Currency" />
-                <Entry x:Name="FormCurrency" Placeholder="e.g. EUR" />
-                <Label Text="Status" />
-                <Picker x:Name="FormStatusPicker" Title="Status" />
+                <Label Text="Counterparty" TextColor="{StaticResource White}" />
+                <Picker x:Name="FormCounterpartyPicker" Title="Select counterparty" TextColor="{StaticResource White}" />
+                <Label Text="Amount" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormAmount" Keyboard="Numeric" Placeholder="e.g. 25000" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
+                <Label Text="Currency" TextColor="{StaticResource White}" />
+                <Entry x:Name="FormCurrency" Placeholder="e.g. EUR" TextColor="{StaticResource White}" PlaceholderColor="{StaticResource Gray400}" />
+                <Label Text="Status" TextColor="{StaticResource White}" />
+                <Picker x:Name="FormStatusPicker" Title="Status" TextColor="{StaticResource White}" />
                 <HorizontalStackLayout Spacing="10">
                     <Button x:Name="FormSaveButton" Text="Save" Clicked="OnFormSaveClicked" />
                     <Button x:Name="FormCancelButton" Text="Cancel" Clicked="OnFormCancelClicked" />
@@ -30,19 +30,20 @@
             </VerticalStackLayout>
         </Border>
 
-        <CollectionView Grid.Row="2" x:Name="MarginCallsList" SelectionMode="None">
+        <CollectionView Grid.Row="2" x:Name="MarginCallsList" SelectionMode="None" Margin="0,10,0,0">
             <CollectionView.EmptyView>
                 <Label Text="No margin calls. Tap Add to create one." TextColor="{StaticResource Gray500}" HorizontalOptions="Center" VerticalOptions="Center" />
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border Padding="12" Margin="0,4" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}">
+                    <VerticalStackLayout Padding="0,8,0,8" Spacing="0">
+                    <Border Padding="10" Stroke="{StaticResource Gray600}" BackgroundColor="{StaticResource Gray950}" StrokeShape="RoundRectangle 10">
                         <VerticalStackLayout Spacing="6">
-                            <Label Text="{Binding Counterparty.Name}" FontAttributes="Bold" />
-                            <Label Text="{Binding Amount, StringFormat='Amount: {0:N2}'}" />
-                            <Label Text="{Binding Currency}" />
-                            <Label Text="{Binding CallDate, StringFormat='Date: {0:yyyy-MM-dd}'}" />
-                            <Label Text="{Binding Status}" TextColor="{StaticResource Gray600}" />
+                            <Label Text="{Binding Counterparty.Name}" FontAttributes="Bold" TextColor="{StaticResource White}" />
+                            <Label Text="{Binding Amount, StringFormat='Amount: {0:N2}'}" TextColor="{StaticResource White}" />
+                            <Label Text="{Binding Currency}" TextColor="{StaticResource White}" />
+                            <Label Text="{Binding CallDate, StringFormat='Date: {0:yyyy-MM-dd}'}" TextColor="{StaticResource White}" />
+                            <Label Text="{Binding Status}" TextColor="{StaticResource Gray400}" />
                             <HorizontalStackLayout Spacing="8">
                                 <Button Text="Pending" Clicked="OnStatusButtonClicked" />
                                 <Button Text="Met" Clicked="OnStatusButtonClicked" />
@@ -50,6 +51,7 @@
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </Border>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
