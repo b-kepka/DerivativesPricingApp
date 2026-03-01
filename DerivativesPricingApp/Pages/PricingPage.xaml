@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DerivativesPricingApp.Pages.PricingPage"
+             Title="Pricing">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <Label Text="Option (Black-Scholes)" Style="{StaticResource Headline}" />
+            <VerticalStackLayout Spacing="8" Padding="0,0,0,16">
+                <Label Text="Spot" />
+                <Entry x:Name="OptionSpot" Placeholder="e.g. 100" Keyboard="Numeric" />
+                <Label Text="Strike" />
+                <Entry x:Name="OptionStrike" Placeholder="e.g. 100" Keyboard="Numeric" />
+                <Label Text="Time to maturity (years)" />
+                <Entry x:Name="OptionTime" Placeholder="e.g. 1" Keyboard="Numeric" />
+                <Label Text="Risk-free rate" />
+                <Entry x:Name="OptionRate" Placeholder="e.g. 0.05" Keyboard="Numeric" />
+                <Label Text="Volatility" />
+                <Entry x:Name="OptionVol" Placeholder="e.g. 0.2" Keyboard="Numeric" />
+                <Label Text="Option type" />
+                <Picker x:Name="OptionTypePicker" Title="Call or Put" />
+                <Button Text="Calculate option price" Clicked="OnOptionCalculateClicked" />
+                <Label x:Name="OptionResultLabel" Text="" />
+            </VerticalStackLayout>
+
+            <BoxView HeightRequest="1" Color="{StaticResource Gray200}" />
+
+            <Label Text="Bond" Style="{StaticResource Headline}" />
+            <VerticalStackLayout Spacing="8" Padding="0,0,0,16">
+                <Label Text="Face value" />
+                <Entry x:Name="BondFaceValue" Placeholder="e.g. 1000" Keyboard="Numeric" />
+                <Label Text="Coupon rate" />
+                <Entry x:Name="BondCoupon" Placeholder="e.g. 0.05" Keyboard="Numeric" />
+                <Label Text="Frequency (1, 2, 4, 12)" />
+                <Entry x:Name="BondFrequency" Placeholder="e.g. 2" Keyboard="Numeric" />
+                <Label Text="Years to maturity" />
+                <Entry x:Name="BondYears" Placeholder="e.g. 10" Keyboard="Numeric" />
+                <Label Text="Yield to maturity" />
+                <Entry x:Name="BondYtm" Placeholder="e.g. 0.04" Keyboard="Numeric" />
+                <Button Text="Calculate bond price" Clicked="OnBondCalculateClicked" />
+                <Label x:Name="BondResultLabel" Text="" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

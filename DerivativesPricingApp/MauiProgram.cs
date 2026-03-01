@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+using DerivativesPricingApp.Services;
+using Microsoft.Extensions.Logging;
+using System.Net.Http.Headers;
 
 namespace DerivativesPricingApp
 {
@@ -15,8 +17,21 @@ namespace DerivativesPricingApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton(_ =>
+            {
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(Constants.ApiBaseUrl)
+                };
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                return client;
+            });
+
+            builder.Services.AddSingleton<DataApiService>();
+            builder.Services.AddSingleton<PricingApiService>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

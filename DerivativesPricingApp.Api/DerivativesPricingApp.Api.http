@@ -1,6 +1,60 @@
 @DerivativesPricingApp.Api_HostAddress = http://localhost:5053
 
-GET {{DerivativesPricingApp.Api_HostAddress}}/weatherforecast/
+### GET counterparties
+GET {{DerivativesPricingApp.Api_HostAddress}}/api/counterparties
 Accept: application/json
+
+###
+
+### GET trades
+GET {{DerivativesPricingApp.Api_HostAddress}}/api/trades
+Accept: application/json
+
+###
+
+### GET historical prices
+GET {{DerivativesPricingApp.Api_HostAddress}}/api/historicalprices
+Accept: application/json
+
+###
+
+### GET collateral
+GET {{DerivativesPricingApp.Api_HostAddress}}/api/collateral
+Accept: application/json
+
+###
+
+### GET margin calls
+GET {{DerivativesPricingApp.Api_HostAddress}}/api/margincalls
+Accept: application/json
+
+###
+
+### POST price option
+POST {{DerivativesPricingApp.Api_HostAddress}}/api/pricing/options
+Content-Type: application/json
+
+{
+  "spot": 100,
+  "strike": 100,
+  "timeToMaturityYears": 1,
+  "riskFreeRate": 0.05,
+  "volatility": 0.2,
+  "optionType": "Call"
+}
+
+###
+
+### POST price bond
+POST {{DerivativesPricingApp.Api_HostAddress}}/api/pricing/bonds
+Content-Type: application/json
+
+{
+  "faceValue": 1000,
+  "couponRate": 0.05,
+  "frequency": 2,
+  "yearsToMaturity": 10,
+  "yieldToMaturity": 0.04
+}
 
 ###

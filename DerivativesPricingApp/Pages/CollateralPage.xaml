@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DerivativesPricingApp.Pages.CollateralPage"
+             Title="Collateral">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20">
+        <VerticalStackLayout Grid.Row="0" Spacing="8">
+            <Label Text="Collateral positions" Style="{StaticResource Headline}" />
+            <HorizontalStackLayout Spacing="10">
+                <Button x:Name="AddCollateralButton" Text="Add" Clicked="OnAddClicked" />
+                <Button x:Name="RefreshCollateralButton" Text="Refresh" Clicked="OnRefreshClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" x:Name="CollateralFormBorder" IsVisible="False" Padding="12" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}" Margin="0,8,0,8">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Trade ID (optional)" />
+                <Entry x:Name="FormTradeId" Keyboard="Numeric" Placeholder="e.g. 1" />
+                <Label Text="Asset ID" />
+                <Entry x:Name="FormAssetId" Placeholder="e.g. CASH-EUR" />
+                <Label Text="Quantity" />
+                <Entry x:Name="FormQuantity" Keyboard="Numeric" Placeholder="e.g. 1000" />
+                <Label Text="Value" />
+                <Entry x:Name="FormValue" Keyboard="Numeric" Placeholder="e.g. 1000" />
+                <Label Text="Posted date (optional, YYYY-MM-DD)" />
+                <Entry x:Name="FormPostedDate" Placeholder="e.g. 2024-01-15" />
+                <HorizontalStackLayout Spacing="10">
+                    <Button x:Name="FormSaveButton" Text="Save" Clicked="OnFormSaveClicked" />
+                    <Button x:Name="FormCancelButton" Text="Cancel" Clicked="OnFormCancelClicked" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="2" x:Name="CollateralList" SelectionMode="Single" SelectionChanged="OnCollateralSelectionChanged">
+            <CollectionView.EmptyView>
+                <Label Text="No collateral positions. Tap Add to create one." TextColor="{StaticResource Gray500}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="12" Margin="0,4" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="{Binding AssetId}" FontAttributes="Bold" />
+                            <Label Text="{Binding Value, StringFormat='Value: {0:N2}'}" />
+                            <Label Text="{Binding PostedDate, StringFormat='Posted: {0:yyyy-MM-dd}'}" />
+                            <Label Text="{Binding TradeId, StringFormat='Trade ID: {0}'}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

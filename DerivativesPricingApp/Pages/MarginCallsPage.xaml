@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DerivativesPricingApp.Pages.MarginCallsPage"
+             Title="Margin calls">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20">
+        <VerticalStackLayout Grid.Row="0" Spacing="8">
+            <Label Text="Margin calls" Style="{StaticResource Headline}" />
+            <HorizontalStackLayout Spacing="10">
+                <Button x:Name="AddMarginCallButton" Text="Add" Clicked="OnAddClicked" />
+                <Button x:Name="RefreshMarginCallsButton" Text="Refresh" Clicked="OnRefreshClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" x:Name="MarginCallFormBorder" IsVisible="False" Padding="12" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}" Margin="0,8,0,8">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Counterparty" />
+                <Picker x:Name="FormCounterpartyPicker" Title="Select counterparty" />
+                <Label Text="Amount" />
+                <Entry x:Name="FormAmount" Keyboard="Numeric" Placeholder="e.g. 25000" />
+                <Label Text="Currency" />
+                <Entry x:Name="FormCurrency" Placeholder="e.g. EUR" />
+                <Label Text="Status" />
+                <Picker x:Name="FormStatusPicker" Title="Status" />
+                <HorizontalStackLayout Spacing="10">
+                    <Button x:Name="FormSaveButton" Text="Save" Clicked="OnFormSaveClicked" />
+                    <Button x:Name="FormCancelButton" Text="Cancel" Clicked="OnFormCancelClicked" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="2" x:Name="MarginCallsList" SelectionMode="None">
+            <CollectionView.EmptyView>
+                <Label Text="No margin calls. Tap Add to create one." TextColor="{StaticResource Gray500}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="12" Margin="0,4" Stroke="{StaticResource Gray300}" BackgroundColor="{StaticResource Gray100}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding Counterparty.Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Amount, StringFormat='Amount: {0:N2}'}" />
+                            <Label Text="{Binding Currency}" />
+                            <Label Text="{Binding CallDate, StringFormat='Date: {0:yyyy-MM-dd}'}" />
+                            <Label Text="{Binding Status}" TextColor="{StaticResource Gray600}" />
+                            <HorizontalStackLayout Spacing="8">
+                                <Button Text="Pending" Clicked="OnStatusButtonClicked" />
+                                <Button Text="Met" Clicked="OnStatusButtonClicked" />
+                                <Button Text="Disputed" Clicked="OnStatusButtonClicked" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

@@ -4,11 +4,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DerivativesPricingApp"
-    Title="DerivativesPricingApp">
+    xmlns:pages="clr-namespace:DerivativesPricingApp.Pages"
+    Title="Derivatives Pricing"
+    FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" Title="Home W.i.P." />
+    </FlyoutItem>
+    <FlyoutItem Title="Pricing" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Route="PricingPage" ContentTemplate="{DataTemplate pages:PricingPage}" Title="Pricing W.i.P." />
+    </FlyoutItem>
+    <FlyoutItem Title="Collateral" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Route="CollateralPage" ContentTemplate="{DataTemplate pages:CollateralPage}" Title="Collateral W.i.P." />
+    </FlyoutItem>
+    <FlyoutItem Title="Margin calls" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Route="MarginCallsPage" ContentTemplate="{DataTemplate pages:MarginCallsPage}" Title="Margin calls W.i.P." />
+    </FlyoutItem>
 
 </Shell>
